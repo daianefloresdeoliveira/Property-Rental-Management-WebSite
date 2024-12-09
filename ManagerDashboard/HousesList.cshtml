@@ -1,0 +1,39 @@
+﻿@{
+    ViewBag.Title = "Houses List";
+}
+
+<h2>Houses to manage:</h2>
+<a href="@Url.Action("CreateHouse", "ManagerDashboard")">Add new house</a>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Type</th>
+            <th>Address</th>
+            <th>City</th>
+            <th>IsActive?</th>
+            <th>Lot Size</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var property in Model)
+        {
+            <tr>
+                <td>@property.PropertyType</td>
+                <td>@property.Address</td>
+                <td>@property.City</td>
+                <td>@(property.IsActive ? "Ativo" : "Inativo")</td>
+                <td>@(property.House != null ? property.House.LotSize.ToString("F2") : "N/A")</td>
+                <td>
+                    <a href="@Url.Action("EditHouse", "ManagerDashboard", new { id = property.PropertyId })">Edit</a> |
+                    <a href="@Url.Action("DeleteHouse", "ManagerDashboard", new { id = property.PropertyId })">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<a href="@Url.Action("Index", "ManagerDashboard")" class="btn btn-primary">Back to Dashboard</a>
+
+

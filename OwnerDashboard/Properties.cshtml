@@ -1,0 +1,38 @@
+﻿@model IEnumerable<FinalProject_PRMS_ASPNetEntityFrameworkMVC.Models.Property>
+@{
+    ViewBag.Title = "Properties";
+}
+
+
+<h2>My Properties</h2>
+<a href="@Url.Action("CreateProperty", "OwnerDashboard")">Add new property</a>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Type</th>
+            <th>Address</th>
+            <th>City</th>
+            <th>Status</th>
+            <th>IsActive?</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var property in Model)
+        {
+            <tr>
+                <td>@property.PropertyType</td>
+                <td>@property.Address</td>
+                <td>@property.City</td>
+                <td>@(property.IsActive ? "Ativo" : "Inativo")</td>
+                <td>
+                    <a href="@Url.Action("EditProperty", "OwnerDashboard", new { id = property.PropertyId })">Edit</a> |
+                    <a href="@Url.Action("DeleteProperty", "OwnerDashboard", new { id = property.PropertyId })">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<a href="@Url.Action("Index", "OwnerDashboard")" class="btn btn-primary">Back to Dashboard</a>
+

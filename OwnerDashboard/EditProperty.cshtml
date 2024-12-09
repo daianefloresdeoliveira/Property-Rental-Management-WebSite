@@ -1,0 +1,82 @@
+﻿@model FinalProject_PRMS_ASPNetEntityFrameworkMVC.Models.Property
+
+@{
+    ViewBag.Title = "EditProperty";
+}
+
+
+<h2>Edit Property</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.PropertyType)
+        @Html.TextBoxFor(model => model.PropertyType, new { @class = "form-control" })
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Address)
+        @Html.TextBoxFor(model => model.Address, new { @class = "form-control" })
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.City)
+        @Html.TextBoxFor(model => model.City, new { @class = "form-control" })
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.State)
+        @Html.TextBoxFor(model => model.State, new { @class = "form-control" })
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.ZipCode)
+        @Html.TextBoxFor(model => model.ZipCode, new { @class = "form-control" })
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.StatusId)
+        @Html.TextBoxFor(model => model.StatusId, new { @class = "form-control" })
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Description)
+        @Html.TextAreaFor(model => model.Description, new { @class = "form-control" })
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.RentAmount)
+        @Html.TextBoxFor(model => model.RentAmount, new { @class = "form-control" })
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.PetsAllowed)
+        @Html.CheckBoxFor(model => model.PetsAllowed)
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Bedrooms)
+        @Html.TextBoxFor(model => model.Bedrooms, new { @class = "form-control" })
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Bathrooms)
+        @Html.TextBoxFor(model => model.Bathrooms, new { @class = "form-control" })
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Garage)
+        @Html.CheckBoxFor(model => model.Garage)
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.IsActive)
+        @Html.CheckBoxFor(model => model.IsActive)
+    </div>
+
+    <button type="submit" class="btn btn-primary">Save</button>
+    <a href="@Url.Action("Properties", "OwnerDashboard")" class="btn btn-default">Cancel</a>
+}
+

@@ -1,0 +1,63 @@
+﻿
+@{
+    ViewBag.Title = "Login";
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"]</title>
+    <link href="@Url.Content("~/Content/css/login.css")" rel="stylesheet" />
+</head>
+
+<body>
+
+    <div class="login-container">
+        <h2>Login</h2>
+        <form method="post" action="@Url.Action("ValidateLogin", "Home")">
+
+
+            <div class="form-group">
+                <label for="role">Select Role:</label>
+                <select id="role" name="role" class="form-control" required>
+                    <option value="Owner">Owner</option>
+                    <option value="Manager">Manager</option>
+                    <option value="Tenant">Tenants</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" class="form-control" required />
+            </div>
+
+            <div class="form-group">
+                <label for="password">Password:</label>
+                <input type="password" id="password" name="password" class="form-control" required />
+            </div>
+
+
+
+            <button type="submit" class="btn btn-primary">Login</button>
+
+            <br><br>
+
+            <div class="">
+                <p style="text-align: center;">Don't have an account? <a href="@Url.Action("Create", "Users")" class="btn btn-secondary">Register Here</a></p>
+            </div>
+        </form>
+
+
+
+        @if (ViewData["ErrorMessage"] != null)
+        {
+            <div class="alert alert-danger">@ViewData["ErrorMessage"]</div>
+        }
+    </div>
+
+</body>
+</html>
+
+

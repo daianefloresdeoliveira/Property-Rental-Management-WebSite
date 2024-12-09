@@ -1,0 +1,27 @@
+﻿@model FinalProject_PRMS_ASPNetEntityFrameworkMVC.Models.Property
+
+@{
+    ViewBag.Title = "Delete House";
+}
+
+<h2>Are you sure you want to delete this House?</h2>
+
+<div>
+    <h2>House:</h2>
+    <p><strong>City:</strong> @Model.City</p>
+    <p><strong>Lot Size:</strong> @Model.House.LotSize</p>  
+
+    <form method="post" action="@Url.Action("DeleteHouse", "ManagerDashboard", new { id = Model.PropertyId })">
+        <input type="submit" value="Delete" class="btn btn-danger" />
+    </form>
+</div>
+
+@using (Html.BeginForm("DeleteConfirmedHouses", "ManagerDashboard", new { id = Model.PropertyId }, FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-group">
+        <button type="submit" class="btn btn-danger">Delete</button>
+        <a href="@Url.Action("Index", "ManagerDashboard")" class="btn btn-default">Cancel</a>
+    </div>
+}

@@ -1,0 +1,83 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+}
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Owner Dashboard</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="~/Content/css/owner_dashboard.css">
+</head>
+<body>
+
+    <div class="dashboard-container">        
+        <div class="sidebar">
+            <div class="sidebar-header">
+                <h3>Owner Dashboard</h3>
+            </div>
+            <ul class="sidebar-menu">
+                <li><a href="@Url.Action("Index", "OwnerDashboard")"><i class="fas fa-search"></i> Home</a></li>
+                <li><a href="@Url.Action("Properties", "OwnerDashboard")"><i class="fas fa-search"></i> My Properties</a></li>
+                <li><a href="@Url.Action("IndexManagers", "OwnerDashboard")"><i class="fas fa-users"></i> Managers</a></li>
+                <li><a href="@Url.Action("IndexTenants", "Tenants")"><i class="fas fa-user-friends"></i> Tenants</a></li>
+                <li><a href="@Url.Action("Settings", "OwnerDashboard")"><i class="fas fa-cogs"></i> Settings</a></li>
+                <li>@Html.ActionLink("Logout", "Logout", "OwnerDashboard", null, new { @class = "fas fa-sign-out-alt" })</li>
+
+            </ul>
+        </div>
+        
+        <div class="main-content">
+            <header class="header">
+                <div class="header-left">
+                    @if (Session["UserName"] != null)
+                    {
+                        <h2 class="welcome-message">Welcome back, @Session["UserName"]!</h2>
+                    }
+                    else
+                    {
+                        <h2 class="welcome-message">Welcome!</h2> 
+                    }
+                </div>
+                <div class="header-right">
+                    <a href="@Url.Action("CreateProperty", "OwnerDashboard")" class="btn btn-primary">Add New Property</a>
+                </div>
+            </header>
+
+            <section class="stats">
+                <div class="stat-card">
+                    <h4>Total Properties</h4>
+                    <p>@ViewBag.TotalProperties</p>
+                </div>
+                <div class="stat-card">
+                    <h4>Total Managers</h4>
+                    <p>@ViewBag.TotalManagers</p>
+                </div>
+                <div class="stat-card">
+                    <h4>Total Tenants</h4>
+                    <p>@ViewBag.TotalTenants</p>
+                </div>
+            </section>
+
+            <section class="recent-activity">
+                <h3>Recent Activity ( some random text just for fun and design...)</h3>
+                <div class="activity-card">
+                    <h4>New Tenant Added</h4>
+                    <p>John Doe has been added as a new tenant.</p>
+                    <span class="time">5 minutes ago</span>
+                </div>
+                <div class="activity-card">
+                    <h4>Property Updated ( some random text just for fun and design...)</h4>
+                    <p>The property on 123 Elm Street has been updated.</p>
+                    <span class="time">2 hours ago</span>
+                </div>
+            </section>
+        </div>
+    </div>
+
+</body>
+</html>

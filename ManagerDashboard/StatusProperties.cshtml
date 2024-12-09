@@ -1,0 +1,68 @@
+﻿@model IEnumerable<FinalProject_PRMS_ASPNetEntityFrameworkMVC.Models.Property>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>PropertyId</th>
+            <th>Address</th>
+            <th>City</th>
+            <th>Rent Amount</th>
+            <th>OwnerId</th>
+            <th>Status</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var property in Model)
+        {
+            <tr>
+                <td>@property.PropertyId</td>
+                <td>@property.Address</td>
+                <td>@property.City</td>
+                <td>@property.RentAmount</td>
+                <td>@property.OwnerId</td>
+                <td>@property.StatusId</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+
+<table class="table table-bordered">
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>StatusId</th>
+                <th>Status Description</th>
+            </tr>
+        </thead>
+            <tbody>
+                <tr style="color: green;">
+                    <td>6</td>
+                    <td>Available</td>
+                </tr>
+                <tr style="color: red;">
+                    <td>7</td>
+                    <td>Rented</td>
+                </tr>
+                <tr style="color: orange;">
+                    <td>8</td>
+                    <td>Pending</td>
+                </tr>
+                <tr style="color: orange;">
+                    <td>17</td>
+                    <td>Under Maintenance</td>
+                </tr>
+                <tr style="color: blue;">
+                            <td>3</td>
+                            <td>You have schedules for this property</td>
+                </tr>
+                <tr style="color: purple;">
+                            <td>16</td>
+                            <td>Reserved</td>
+                </tr>
+            </tbody>
+    </table>
+
+
+    <a href="@Url.Action("Index", "ManagerDashboard")" class="btn btn-primary">Back to Dashboard</a>
+

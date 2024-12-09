@@ -1,0 +1,49 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tenant Dashboard</title>
+    <link rel="stylesheet" href="@Url.Content("~/Content/css/tenant-dashboard.css")">  
+    
+</head>
+<body>
+
+    <div class="dashboard-container">      
+        <div class="sidebar">
+            <div class="sidebar-header">
+                <h3>Tenant Dashboard</h3>
+            </div>
+            <ul class="sidebar-menu">
+                <li><a href="#" class="active"><i class="fas fa-home"></i> Home</a></li>
+                <li><a href="@Url.Action("SearchProperties", "TenantDashboard")"><i class="fas fa-search"></i> Search Properties</a></li>
+                <li><a href="@Url.Action("Index", "Messages")"><i class="fas fa-comments"></i> Messages</a></li>
+                <li><a href="@Url.Action("Settings", "TenantDashboard")"><i class="fas fa-cogs"></i> Settings</a></li>                
+                <li>@Html.ActionLink("Logout", "Logout", "TenantDashboard", null, new { @class = "fas fa-sign-out-alt" })</li>
+            </ul>
+        </div>
+       
+        <div class="main-content">
+
+            <header class="header">
+                <div class="header-left">
+                    @if (Session["UserName"] != null)
+                    {
+                        <h2 class="welcome-message">Welcome back, @Session["UserName"]!</h2>
+                    }
+                    else
+                    {
+                        <h2 class="welcome-message">Welcome!</h2> 
+                    }
+                </div>
+            </header>
+        </div>
+    </div>
+
+</body>
+</html>

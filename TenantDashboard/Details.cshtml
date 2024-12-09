@@ -1,0 +1,73 @@
+﻿@model FinalProject_PRMS_ASPNetEntityFrameworkMVC.Models.Property
+
+@{
+    ViewBag.Title = "Property Details";
+}
+
+<div class="container mt-4">
+    <h1 class="text-center mb-4">Property Details</h1>
+
+    <section class="property-details p-4 border rounded shadow-sm bg-light">
+        <h2 class="text-primary mb-3">@Model.PropertyType</h2>
+        
+        <div class="row g-3">
+            <div class="col-md-6">
+                <ul class="list-group">
+                    <li class="list-group-item"><strong>Address:</strong> @Model.Address</li>
+                    <li class="list-group-item"><strong>City:</strong> @Model.City</li>
+                    <li class="list-group-item"><strong>State:</strong> @Model.State</li>
+                    <li class="list-group-item"><strong>Zip Code:</strong> @Model.ZipCode</li>
+                    <li class="list-group-item"><strong>Description:</strong> @Model.Description</li>
+                    <li class="list-group-item"><strong>Rent:</strong> $@Model.RentAmount</li>
+                    <li class="list-group-item"><strong>Bedrooms:</strong> @Model.Bedrooms</li>
+                    <li class="list-group-item"><strong>Bathrooms:</strong> @Model.Bathrooms</li>
+                    <li class="list-group-item"><strong>Pets Allowed:</strong> @(Model.PetsAllowed ? "Yes" : "No")</li>
+                    <li class="list-group-item"><strong>Garage:</strong> @(Model.Garage ? "Yes" : "No")</li>
+                    <li class="list-group-item">
+                        <strong>Status:</strong>
+                        <span class="badge @(Model.IsActive ? "bg-success" : "bg-danger")">
+                            @(Model.IsActive ? "Active" : "Inactive")
+                        </span>
+                    </li>
+                </ul>
+            </div>
+            
+            <div class="col-md-6 text-center">
+                @if (Model.Image != null && Model.Image.Length > 0)
+                {
+                    <img src="data:image/jpeg;base64,@Convert.ToBase64String(Model.Image)"
+                         alt="Property Image"
+                         class="img-fluid rounded shadow">
+                }
+                else
+                {
+                    <p class="text-muted">No image available</p>
+                }
+            </div>
+        </div>
+        
+        <div class="mt-4 d-flex gap-3">
+            <button class="btn btn-primary"
+                    onclick="window.location.href='@Url.Action("MakeAppointment", "TenantDashboard", new { id = Model.PropertyId })'">
+                Make Appointment
+            </button>
+            <button class="btn btn-secondary"
+                    onclick="window.location.href='@Url.Action("SendMessageM", "TenantDashboard", new { id = Model.PropertyId })'">
+                Send a Message
+            </button>
+        </div>
+    </section>
+    
+    @if (TempData["SuccessMessage"] != null)
+    {
+        <div class="alert alert-success mt-4">
+            @TempData["SuccessMessage"]
+        </div>
+    }
+    @if (TempData["ErrorMessage"] != null)
+    {
+        <div class="alert alert-danger mt-4">
+            @TempData["ErrorMessage"]
+        </div>
+    }
+</div>

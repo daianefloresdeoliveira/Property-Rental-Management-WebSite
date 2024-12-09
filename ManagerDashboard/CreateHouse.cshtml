@@ -1,0 +1,51 @@
+﻿@model FinalProject_PRMS_ASPNetEntityFrameworkMVC.Models.Property
+
+@{
+    ViewBag.Title = "CreateHouse";
+}
+
+<h2>Add House:</h2>
+
+@using (Html.BeginForm("CreateHouse", "ManagerDashboard", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.City)
+        @Html.TextBoxFor(model => model.City, new { @class = "form-control" })
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.State)
+        @Html.TextBoxFor(model => model.State, new { @class = "form-control" })
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.ZipCode)
+        @Html.TextBoxFor(model => model.ZipCode, new { @class = "form-control" })
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Description)
+        @Html.TextBoxFor(model => model.Description, new { @class = "form-control" })
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.RentAmount)
+        @Html.TextBoxFor(model => model.RentAmount, new { @class = "form-control" })
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Bedrooms)
+        @Html.TextBoxFor(model => model.Bedrooms, new { @class = "form-control" })
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Bathrooms)
+        @Html.TextBoxFor(model => model.Bathrooms, new { @class = "form-control" })
+    </div>
+
+
+    <button type="submit" class="btn btn-primary">Create</button>
+}

@@ -1,0 +1,33 @@
+﻿@model FinalProject_PRMS_ASPNetEntityFrameworkMVC.Models.User
+
+@{
+    ViewBag.Title = "Create Manager";
+}
+
+<h2>Create</h2>
+
+
+@using (Html.BeginForm("CreateManager", "OwnerDashboard", FormMethod.Post))
+{
+    <div class="form-group">
+        <label>Name</label>
+        @Html.TextBoxFor(m => m.FirstName, new { @class = "form-control" })
+    </div>
+    <div class="form-group">
+        <label>Name</label>
+        @Html.TextBoxFor(m => m.LastName, new { @class = "form-control" })
+    </div>
+    <div class="form-group">
+        <label>Email</label>
+        @Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
+    </div>
+    <div class="form-group">
+        <label>Phone</label>
+        @Html.TextBoxFor(m => m.PhoneNumber, new { @class = "form-control" })
+    </div>
+    <div class="form-group">
+        <label>Phone</label>
+        @Html.TextBoxFor(m => m.Password, new { @class = "form-control" })
+    </div>
+    <button type="submit" class="btn btn-primary">Save</button>
+}

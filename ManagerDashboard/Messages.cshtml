@@ -1,0 +1,35 @@
+﻿@model IEnumerable<FinalProject_PRMS_ASPNetEntityFrameworkMVC.Models.Message>
+
+<h2>All Messages</h2>
+
+@if (Model != null && Model.Any())
+{
+    <table>
+        <thead>
+            <tr>
+                <th>Message</th>
+                <th>Date</th>
+
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var message in Model)
+            {
+                <tr>
+                    <td>@message.Content_Message</td>
+                    <td>@message.MessageDateTime.ToString("g")</td>
+
+                </tr>
+            }
+        </tbody>
+    </table>
+
+
+    <a href="@Url.Action("Index", "ManagerDashboard")" class="btn btn-primary">Back to Dashboard</a>
+
+}
+else
+{
+    <p>No messages found.</p>
+}
+

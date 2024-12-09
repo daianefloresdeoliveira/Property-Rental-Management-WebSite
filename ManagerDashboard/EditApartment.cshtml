@@ -1,0 +1,39 @@
+﻿@model FinalProject_PRMS_ASPNetEntityFrameworkMVC.Models.Property
+
+@{
+    ViewBag.Title = "Edit Apartment";
+}
+
+<h2>Edit Apartment</h2>
+
+@using (Html.BeginForm("EditApartment", "ManagerDashboard", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+    @Html.HiddenFor(model => model.PropertyId)
+
+    <div class="form-group">
+        <label for="Address">Address</label>
+        @Html.TextBoxFor(model => model.Address, new { @class = "form-control" })
+        @Html.ValidationMessageFor(model => model.Address)
+    </div>
+
+    <div class="form-group">
+        <label for="City">City</label>
+        @Html.TextBoxFor(model => model.City, new { @class = "form-control" })
+        @Html.ValidationMessageFor(model => model.City)
+    </div>
+
+    <div class="form-group">
+        <label for="IsActive">Is Active?</label>
+        @Html.CheckBoxFor(model => model.IsActive)
+    </div>
+
+    <div class="form-group">
+        <label for="StatusId">Status</label>
+        @Html.TextBoxFor(model => model.StatusId, new { @class = "form-control" })
+        @Html.ValidationMessageFor(model => model.StatusId)
+    </div>
+
+    <button type="submit" class="btn btn-primary">Save</button>
+    <a href="@Url.Action("ApartmentsList", "ManagerDashboard")" class="btn btn-default">Cancel</a>
+}

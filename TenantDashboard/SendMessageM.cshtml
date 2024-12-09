@@ -1,0 +1,19 @@
+﻿@model FinalProject_PRMS_ASPNetEntityFrameworkMVC.Models.Property
+
+@{
+    ViewBag.Title = "Send Message";
+}
+
+<h2>Send a Message to the Property Manager</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.HiddenFor(m => m.PropertyId) 
+
+    <div class="form-group">
+        @Html.Label("Message")
+        @Html.TextArea("contentMessage", "", new { @class = "form-control", rows = 4 })
+    </div>
+
+    <button type="submit" class="btn btn-primary">Send Message</button>
+}

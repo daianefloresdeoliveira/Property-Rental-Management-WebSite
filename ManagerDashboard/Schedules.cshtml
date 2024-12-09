@@ -1,0 +1,53 @@
+﻿@model IEnumerable<FinalProject_PRMS_ASPNetEntityFrameworkMVC.Models.Appointment>
+
+@{
+    ViewBag.Title = "Schedules";
+}
+
+<h2>Manage Schedules</h2>
+
+@if (TempData["SuccessMessage"] != null)
+{
+    <div class="alert alert-success">@TempData["SuccessMessage"]</div>
+}
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Tenant</th>
+            <th>Property</th>
+            <th>Appointment Date</th>
+            <th>Message</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var schedule in Model)
+        {
+            <tr>
+                <td>@schedule.TenantId</td>
+                <td>@schedule.Property.Address</td>
+                <td>@schedule.AppointmentDate</td>
+                <td>@schedule.Message</td>
+                <td>
+                    @using (Html.BeginForm("UpdateSchedule", "ManagerDashboard", FormMethod.Post))
+                    {
+                        @Html.AntiForgeryToken()
+                        @Html.Hidden("appointmentId", schedule.AppointmentId)
+
+                        <input type="datetime-local" name="newDate" value="@schedule.AppointmentDate.ToString("yyyy-MM-ddTHH:mm")" />
+                        <button name="action" value="Accept" class="btn btn-success">Accept</button>
+                        <button name="action" value="Deny" class="btn btn-danger">Deny</button>
+                    }
+                </td>
+
+            </tr>
+        }
+
+
+    </tbody>
+
+</table>
+
+<a href="@Url.Action("Index", "ManagerDashboard")" class="btn btn-primary">Back to Dashboard</a>
+

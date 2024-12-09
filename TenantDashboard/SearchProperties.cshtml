@@ -1,0 +1,116 @@
+﻿@model IEnumerable<FinalProject_PRMS_ASPNetEntityFrameworkMVC.Models.Property>
+
+@{
+    ViewBag.Title = "SearchProperties";
+}
+
+<div class="container mt-4">
+    <h1 class="text-center mb-4">Search Properties</h1>
+
+    <section class="filters p-4 border rounded shadow-sm mb-4 bg-light">
+        <h3 class="mb-3">Filter Properties</h3>
+        <form id="filterForm" method="get" action="@Url.Action("SearchProperties", "TenantDashboard")" class="row g-3">
+            <div class="col-md-4">
+                <label for="bedrooms" class="form-label">Bedrooms:</label>
+                <select id="bedrooms" name="bedrooms" class="form-select">
+                    <option value="" disabled selected>Choose number bedrooms...</option>
+                    <option value="1">1 Bedroom</option>
+                    <option value="2">2 Bedrooms</option>
+                    <option value="3">3 Bedrooms</option>
+                    <option value="4">4 Bedrooms</option>
+                </select>
+            </div>
+
+            <div class="col-md-4">
+                <label for="bathrooms" class="form-label">Bathrooms:</label>
+                <select id="bathrooms" name="bathrooms" class="form-select">
+                    <option value="" disabled selected>Choose number bathrooms...</option>
+                    <option value="1">1 Bathroom</option>
+                    <option value="2">2 Bathrooms</option>
+                    <option value="3">3 Bathrooms</option>
+                </select>
+            </div>
+
+            <div class="col-md-4">
+                <label for="petsAllowed" class="form-label">Pets Allowed:</label>
+                <select id="petsAllowed" name="petsAllowed" class="form-select">
+                    <option value="" disabled selected>Choose pets allowed...</option>
+                    <option value="yes">Yes</option>
+                    <option value="no">No</option>
+                </select>
+            </div>
+
+            <div class="col-md-4">
+                <label for="city" class="form-label">City:</label>
+                <input type="text" id="city" name="city" placeholder="Enter City" class="form-control">
+            </div>
+
+            <div class="col-md-4">
+                <label for="rentRange" class="form-label">Rent Range:</label>
+                <div class="d-flex gap-2">
+                    <input type="number" id="minRent" name="minRent" placeholder="Min Rent" step="100" class="form-control">
+                    <input type="number" id="maxRent" name="maxRent" placeholder="Max Rent" step="100" class="form-control">
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <label for="propertyType" class="form-label">Property Type:</label>
+                <select id="propertyType" name="propertyType" class="form-select">
+                    <option value="" disabled selected>Choose property type...</option>
+                    <option value="Apartment">Apartment</option>
+                    <option value="Condo">Condo</option>
+                    <option value="House">House</option>
+                    <option value="Townhouse">Townhouse</option>
+                </select>
+            </div>
+
+            <div class="col-12 text-end">
+                <button type="submit" class="btn btn-primary">Search</button>
+            </div>
+        </form>
+    </section>
+   
+    <section class="properties-list">
+        <h3 class="mb-3">Available Properties</h3>
+
+        @if (ViewBag.ErrorMessage != null)
+        {
+            <div class="alert alert-danger">
+                <strong>@ViewBag.ErrorMessage</strong>
+            </div>
+        }
+
+        @if (Model != null && Model.Any())
+        {
+            <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+                @foreach (var property in Model)
+                {
+                    <div class="col">
+                        <div class="card h-100 shadow-sm">
+                            @if (!string.IsNullOrEmpty(property.ImageBase64))
+                            {
+                                <img src="data:image/jpeg;base64,@property.ImageBase64" class="card-img-top" alt="Property Image">
+                            }
+                            <div class="card-body">
+                                <h5 class="card-title">@property.PropertyType</h5>
+                                <p class="card-text">@property.Description</p>
+                                <ul class="list-unstyled">
+                                    <li><strong>City:</strong> @property.City</li>
+                                    <li><strong>Rent:</strong> $@property.RentAmount</li>
+                                    <li><strong>Bedrooms:</strong> @property.Bedrooms</li>
+                                    <li><strong>Bathrooms:</strong> @property.Bathrooms</li>
+                                    <li><strong>Pets Allowed:</strong> @(property.PetsAllowed ? "Yes" : "No")</li>
+                                </ul>
+                                <a href="@Url.Action("Details", "TenantDashboard", new { id = property.PropertyId })" class="btn btn-info w-100">Details</a>
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+        }
+        else
+        {
+            <p class="text-muted">No properties found matching your criteria.</p>
+        }
+    </section>
+</div>
